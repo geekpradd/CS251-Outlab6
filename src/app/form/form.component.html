@@ -1,0 +1,25 @@
+
+  Name:
+  <input type="text" [formControl]="name">
+  Email:
+  <input type="text" [formControl]="email">
+  Comments:
+  <textarea [formControl]="comments">
+  </textarea>
+<br>
+  <label for="gender">Feedback:</label>
+            <div>
+              <input type="radio" value="Great" name="feedback" [formControl]="feedback">
+              <label>Great</label>
+           </div>
+   
+           <div>
+              <input type="radio" value="Okay" name="feedback" [formControl]="feedback">
+              <label>Okay</label>
+           </div>
+           <div>
+              <input type="radio" value="Not good" name="feedback" [formControl]="feedback">
+              <label>Not good</label>
+           </div>
+
+{{feedback.value}}
