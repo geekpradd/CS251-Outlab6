@@ -1,0 +1,14 @@
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card {
+    // max-width: 400px;
+    width: 90%;
+    margin: 10px;
+    max-width: 500px;
+    // background-color: azure;
+    border: 0.5px black solid;
+}

@@ -10,6 +10,7 @@ import { Students } from '../details';
 export class ContactComponent implements OnInit {
 
   students = Students;
+
   constructor() { }
 
   ngOnInit(): void {

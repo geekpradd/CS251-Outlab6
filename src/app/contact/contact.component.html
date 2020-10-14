@@ -1,5 +1,16 @@
-<ul class="details">
-  <li *ngFor="let student of students">
-    <span class="badge">{{student.name}}</span> {{student.roll}}  {{student.email}}
-  </li>
-</ul>
+<!-- <ul class="details">
+    <li *ngFor="let student of students">
+        <span class="badge">{{student.name}}</span> {{student.roll}} {{student.email}}
+    </li>
+</ul> -->
+<div class="flex-container">
+    <mat-card class="card" color="primary" *ngFor="let student of students">
+        <mat-card-header>
+            <mat-card-title>{{student.name}}</mat-card-title>
+            <mat-card-subtitle>{{student.roll}}, {{student.email}}</mat-card-subtitle>
+        </mat-card-header>
+        <!-- <mat-card-content>
+            Roll No.: 
+        </mat-card-content> -->
+    </mat-card>
+</div>

@@ -1,25 +1,23 @@
-
-  Name:
-  <input type="text" [formControl]="name">
-  Email:
-  <input type="text" [formControl]="email">
-  Comments:
-  <textarea [formControl]="comments">
-  </textarea>
-<br>
-  <label for="gender">Feedback:</label>
-            <div>
-              <input type="radio" value="Great" name="feedback" [formControl]="feedback">
-              <label>Great</label>
-           </div>
-   
-           <div>
-              <input type="radio" value="Okay" name="feedback" [formControl]="feedback">
-              <label>Okay</label>
-           </div>
-           <div>
-              <input type="radio" value="Not good" name="feedback" [formControl]="feedback">
-              <label>Not good</label>
-           </div>
-
-{{feedback.value}}
+<div class="flex-container">
+    <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>Name</mat-label>
+        <input matInput name="name" placeholder="Enter Your Name" [formControl]="name" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Enter Your Email" [formControl]="email" required>
+        <mat-error *ngIf="email.invalid">{{EmailErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <div>
+        <label>Feedback: </label>
+        <mat-radio-group class="feedback" [formControl]="feedback" required>
+            <mat-radio-button value="Great">Great</mat-radio-button>
+            <mat-radio-button value="Okay">Okay</mat-radio-button>
+            <mat-radio-button value="Not good">Not good</mat-radio-button>
+        </mat-radio-group>
+    </div>
+    <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>Comments</mat-label>
+        <textarea matInput [formControl]="comments" placeholder="Comments"></textarea>
+    </mat-form-field>
+</div>

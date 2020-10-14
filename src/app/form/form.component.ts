@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Validator, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
@@ -8,12 +8,20 @@ import { FormControl } from '@angular/forms';
 })
 export class FormComponent implements OnInit {
 	name = new FormControl('');
-	email = new FormControl('');
+	email = new FormControl('',[Validators.required, Validators.email]);
 	comments = new FormControl('');
 	feedback = new FormControl('');
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  EmailErrorMessage() {
+    if (this.email.hasError('required')) {
+      return 'You must enter a value';
+    }
+
+    return this.email.hasError('email') ? 'Not a valid email' : '';
   }
 
 }
