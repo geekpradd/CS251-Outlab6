@@ -10,12 +10,15 @@ import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field'; 
 import {MatInputModule} from '@angular/material/input'
 import {MatRadioModule} from '@angular/material/radio'; 
+import {MatListModule} from '@angular/material/list'; 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormComponent } from './form/form.component';
 import { ContactComponent } from './contact/contact.component';
 import { HeaderComponent } from './header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DataService } from './data.service';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,9 +38,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatCardModule,
     MatFormFieldModule,
     MatRadioModule,
-    MatInputModule
+    MatInputModule,
+    HttpClientModule,
+    MatListModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

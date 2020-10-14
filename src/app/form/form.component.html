@@ -1,16 +1,19 @@
-<div class="flex-container">
+<form [formGroup]="data" class="flex-container" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="outline" floatLabel="always">
         <mat-label>Name</mat-label>
-        <input matInput name="name" placeholder="Enter Your Name" [formControl]="name" required>
+        <input matInput name="name" placeholder="Enter Your Name" formControlName="name" required>
+        <mat-error *ngIf="name.invalid">
+            Name is required.
+        </mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline" floatLabel="always">
         <mat-label>Email</mat-label>
-        <input matInput placeholder="Enter Your Email" [formControl]="email" required>
+        <input matInput id="email" placeholder="Enter Your Email" formControlName="email" required>
         <mat-error *ngIf="email.invalid">{{EmailErrorMessage()}}</mat-error>
     </mat-form-field>
     <div>
         <label>Feedback: </label>
-        <mat-radio-group class="feedback" [formControl]="feedback" required>
+        <mat-radio-group class="feedback" formControlName="feedback" required>
             <mat-radio-button value="Great">Great</mat-radio-button>
             <mat-radio-button value="Okay">Okay</mat-radio-button>
             <mat-radio-button value="Not good">Not good</mat-radio-button>
@@ -18,6 +21,14 @@
     </div>
     <mat-form-field appearance="outline" floatLabel="always">
         <mat-label>Comments</mat-label>
-        <textarea matInput [formControl]="comments" placeholder="Comments"></textarea>
+        <textarea matInput formControlName="comment" placeholder="Comments"></textarea>
     </mat-form-field>
-</div>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!data.valid">Submit</button>
+</form>
+
+<mat-list>
+    <mat-list-item> Name: {{name.value}} </mat-list-item>
+    <mat-list-item> Email: {{email.value}} </mat-list-item>
+    <mat-list-item> Feedback: {{feedback.value}} </mat-list-item>
+    <mat-list-item> Comment: {{comment.value}} </mat-list-item>
+</mat-list>
