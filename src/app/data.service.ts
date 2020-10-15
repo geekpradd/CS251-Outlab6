@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { MyFormData } from './myformdata';
 @Injectable({
   providedIn: 'root'
 })
@@ -22,16 +23,16 @@ export class DataService {
       error.message || 'Something bad happened; please try again later.');
   }
   
-  getIntialData(): Observable<FormData> {
-    return this.http.get<FormData>(this.getUrl)
+  getIntialData(): Observable<MyFormData> {
+    return this.http.get<MyFormData>(this.getUrl)
     .pipe(
       catchError(this.handleError)
     );
     // return { name: "asffa", email: "asasd@asd.com", comments: "", feedback: "Okay" };
   }
 
-  postData(data: FormData): Observable<FormData> {
-    return this.http.post<FormData>(this.postUrl, data)
+  postData(data: MyFormData): Observable<MyFormData> {
+    return this.http.post<MyFormData>(this.postUrl, data)
     .pipe(
       catchError(this.handleError)
     )

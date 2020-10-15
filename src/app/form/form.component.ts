@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validator, FormControl, Validators } from '@angular/forms';
 import { DataService } from '../data.service';
+import {MyFormData} from '../myformdata'
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -8,6 +9,12 @@ import { DataService } from '../data.service';
 })
 export class FormComponent implements OnInit {
   public data = null;
+  public gotData: MyFormData = {
+    name: '',
+    email: '',
+    comment: '',
+    feedback: ''
+  };
   constructor(private _dataService: DataService) { }
 
   ngOnInit(): void {
@@ -17,8 +24,11 @@ export class FormComponent implements OnInit {
       comment: new FormControl(''),
       feedback: new FormControl(''),
       })
+
       this._dataService.getIntialData().subscribe(
-        data =>  this.data.setValue(data),
+        data =>  {
+          this.gotData = data;
+          this.data.setValue(data)},
         error => alert(error),
       )
     // this.data.setValue(this._dataService.getIntialData())
@@ -38,9 +48,12 @@ export class FormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.data.value)
+    // console.log(this.data.value)
     this._dataService.postData(this.data.value).subscribe(
-      data => alert("Posted Successfully"),
+      data => {
+        this.gotData = data;
+        alert("Posted Successfully")
+      },
       error => alert("Post Unsuccessful. See the console for more details"),
     )
   }
